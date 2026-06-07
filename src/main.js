@@ -84,6 +84,7 @@ class Viewer {
         // Mostramos el formulario para una nueva tarea "Task"
         dialog.showModal();
 
+        // Este Código nos permite agregar items a la lista this.#checklist
         let checklistBtn = document.querySelector("dialog #checklist-btn");
         checklistBtn.addEventListener("click", this.#checklistAdd.bind(this));
         this.#checklistInput.addEventListener("keydown", (event) =>{
@@ -97,11 +98,18 @@ class Viewer {
 
 
     #printChecklist() {
-        let tempHtmlList= this.#checklist.map((item, index) => `<span>-> ${item}</span> <button class="del-checklist-task-${index}" type="button">x</button><br>`);
+
+        let tempHtmlList= this.#checklist.map((item, index) => `
+        <input type="text" class="checklist-item-${index}" value="${item}" disabled/>
+        <button class="del-checklist-task-${index}" type="button">x</button>
+        <button class="edit-checklist-task-${index}" type="button">E</button>
+        <br>`);
         // console.log(tempHtmlList);
         this.#checklistOutput.innerHTML = tempHtmlList.join("");
 
         let allDelChecklistTask = document.querySelectorAll("button[class^='del-checklist-task-']");
+        let allEditChecklistTask = document.querySelectorAll("button[class^='edit-checklist-task-']");
+        let allChecklistItem = document.querySelectorAll("input[class^='checklist-item-']");
 
         allDelChecklistTask.forEach((delBtn, index) => {
                 delBtn.addEventListener("click", ()=>{
@@ -109,7 +117,30 @@ class Viewer {
                 });
         })
 
-        // console.log(this.#checklist)
+        allEditChecklistTask.forEach((editBtn, index) => {
+                editBtn.addEventListener("click", ()=>{
+                    this.#checklistEditItem(this.#checklist, index);
+                });
+        })
+
+        allChecklistItem.forEach((checklistItem, index) => {
+                checklistItem.addEventListener("keydown", (event)=>{
+                    if (event.key === "Enter") {
+                        this.#checklistEditItem(this.#checklist, index);
+                    }
+                });
+        })
+
+
+
+    }
+
+    #checklistEditItem(list, index) {
+        let checklistItem = document.querySelector(`dialog .checklist-item-${index}`);
+        checklistItem.disabled = !checklistItem.disabled;
+        checklistItem.focus();
+        list[index] = checklistItem.value;
+        // console.log(this.#checklist);
     }
 
     #checklistAdd() {
@@ -136,7 +167,7 @@ class Viewer {
 }
 
 
-// Test Data
+// Test Data ----------------------------------------------------
 let taskData = {
     id: "001",
     title: "Finish the JavaScript proyect",
@@ -153,3 +184,4 @@ let logger = new CustomLogger();
 logger.log(task1);
 let viewer = new Viewer;
 viewer.showItemModal();
+// ---------------------------------------------------------------
