@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Todo List Project</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png"> -->
+        <!-- Place favicon.ico in the root directory -->
+
+    </head>
+    <body>
+        <main>
+            <dialog>
+                <form class="task-form" action="">
+                   <fieldset>
+                        <legend>Task form</legend>
+                        <label for="title">
+                            Title: <input type="text" id="title" name="title" value=""/>
+                        </label>
+
+                        <label for="description">
+                            Description: <input type="text" min="1980-01-01" id="description" name="description" value=""/>
+                        </label>
+
+                        <label for="date">Date:
+                            <input type="date" id="date" name="date">
+                        </label>
+                    <select id="priority" name="priority">
+                            <option value="high">High</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+
+                        <div>
+                            <p>Note:</p>
+                            <textarea id="note" rows="5" cols="60"></textarea>
+                        </div>
+
+                         <label for="checklist"> <!-- TODO -->
+                            Checklist: <input type="text" id="checklist-input" name="checklist" value=""/>
+                            <button id="checklist-btn" type="button">+</button>
+                            <div id="checklist-output">
+                                <!-- Aquí irán apareciendo la lista de tareas -->
+                            </div>
+                        </label>
+
+                        <div>
+                            <button id="cancel-btn" type="button">Cancel</button>
+                            <button id="create-btn" type="button">Create</button>
+                        </div>
+                   </fieldset>
+                </form>
+
+
+                <!-- TODO Checar el projecto Book para ver como se usa insertAdjacentHTML -->
+                <!-- <button autofocus>
+                        Accept
+                </button> -->
+            </dialog>
+        </main>
+    </body>
+</html>

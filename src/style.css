@@ -1,0 +1,18 @@
+body {
+    /* background-color: mediumvioletred; */
+}
+
+/* Estilo del formulario que pide los datos de la task  */
+/* <<formTask>> */
+.task-form > fieldset {
+    display: flex;
+    flex-direction: column;
+    align-content: space-evenly;
+    min-height: auto;
+    min-width: auto;
+}
+
+dialog #checklist-output {
+    height: 90px;
+    overflow: auto;
+}
