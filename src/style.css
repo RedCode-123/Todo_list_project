@@ -16,3 +16,8 @@ dialog #checklist-output {
     height: 90px;
     overflow: auto;
 }
+
+dialog .edit-btn {
+    /* Al editar en js se cambia inline  */
+    display: none;
+}
