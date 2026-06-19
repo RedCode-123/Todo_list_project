@@ -68,7 +68,7 @@ let logger = new CustomLogger();
 logger.log(task1);
 let formViewer = new FormViewer;
 /////////////////////////////////////
-// formViewer.showTaskModal();
-formViewer.editTask(task1);
-
+// formViewer.showCreateTask();
+// formViewer.showEditTask(task1);
+formViewer.showTask(task1);
 // ---------------------------------------------------------------
