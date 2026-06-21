@@ -43,7 +43,7 @@ export class Task {
         this.note = note;
         this.checklist = checklist;
     }
-    deleteChecklistTask(index){
+    deleteChecklistItem(index){
         let remove = this.checklist.splice(index, 1);
         return remove;
     }
@@ -52,6 +52,18 @@ export class Task {
 
 
 // Test Data ----------------------------------------------------
+
+class ChecklistItem {
+    constructor(text,done=false) {
+        this.text = text;
+        this.done = done;
+    }
+}
+
+let item1 = new ChecklistItem("create project folder", true)
+let item2 = new ChecklistItem("create html file")
+let item3 = new ChecklistItem("create css file", true)
+
 let taskData = {
     id: "001",
     title: "Finish the JavaScript proyect",
@@ -59,7 +71,7 @@ let taskData = {
     dueDate: "2026-05-01",
     priority: "high",
     note: "Curabitur lacinia pulvinar nibh.sdfsdfdsf dsfsf",
-    checklist:["create project folder", "create html file", "create css file", "create js file"]
+    checklist:[ item1, item2, item3]
 }
 
 let task1 = new Task(taskData);
