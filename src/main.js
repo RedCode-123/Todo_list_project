@@ -69,6 +69,6 @@ logger.log(task1);
 let formViewer = new FormViewer;
 /////////////////////////////////////
 // formViewer.showCreateTask();
-// formViewer.showEditTask(task1);
-formViewer.showTask(task1);
+formViewer.showEditTask(task1);
+// formViewer.showTask(task1);
 // ---------------------------------------------------------------
