@@ -1,7 +1,7 @@
 import {projectTasks, Task} from './main.js';
 // <<FormViewerClass>>
 
-class ChecklistItem {
+export class ChecklistItem {
     constructor(text, done=false) {
         this.text = text;
         this.done = done;
@@ -89,12 +89,15 @@ export class FormViewer {
         // Muestra los item del checklist
         // la variable edit es buleana y permite editar o no los valores
         if (edit) {
-            let tempHtmlList= this.#checklist.map((item, index) => `
-            <input type="text" ${item.done?'style="text-decoration:line-through;"':""} class="checklist-item-${index}" value="${item.text}" disabled/>
-            <button class="del-checklist-task-${index}" type="button">X</button>
-            <button class="edit-checklist-task-${index}" type="button">E</button>
-            <button class="mark-checklist-task-${index}" type="button">M</button>
-            <br>`);
+            let tempHtmlList= this.#checklist.map((item, index) => {
+                let checklistItemDoneClass = item.done ? 'checklist-item-done' :'';
+                return  `
+                <input type="text"  class="checklist-item-${index} ${checklistItemDoneClass}" value="${item.text}" disabled/>
+                <button class="del-checklist-task-${index}" type="button">X</button>
+                <button class="edit-checklist-task-${index}" type="button">E</button>
+                <button class="mark-checklist-task-${index}" type="button">M</button>
+                <br>`;
+            });
             // console.log(tempHtmlList);
             this.#checklistOutput.innerHTML = tempHtmlList.join("");
             let allDelChecklistTask = document.querySelectorAll("button[class^='del-checklist-task-']");
@@ -125,11 +128,12 @@ export class FormViewer {
             allMarkChecklistItem.forEach((markBtn, index) => {
                     markBtn.addEventListener("click", ()=>{
                         if (!this.#checklist[index].done) {
-                            allChecklistItem[index].style.textDecoration="line-through";
+                            // allChecklistItem[index].style.textDecoration="line-through";
+                            allChecklistItem[index].classList.add("checklist-item-done");
                             this.#checklist[index].done = true;
 
                         } else {
-                            allChecklistItem[index].style.textDecoration="none";
+                            allChecklistItem[index].classList.remove("checklist-item-done");
                             this.#checklist[index].done = false;
 
                         }
@@ -137,9 +141,12 @@ export class FormViewer {
             })
 
         } else {
-            let tempHtmlList= this.#checklist.map((item, index) => `
-            <input type="text" class="checklist-item-${index}" value="${item.text}" disabled/>
-            <br>`);
+            let tempHtmlList= this.#checklist.map((item, index) =>{
+                let checklistItemDoneClass = item.done ? 'checklist-item-done' :'';
+                return `
+                <input type="text" class="checklist-item-${index} ${checklistItemDoneClass}" value="${item.text}" disabled/>
+                <br>`;
+            });
             // console.log(tempHtmlList);
             this.#checklistOutput.innerHTML = tempHtmlList.join("");
 

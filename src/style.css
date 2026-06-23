@@ -21,3 +21,7 @@ dialog .edit-btn {
     /* Al editar en js se cambia inline  */
     display: none;
 }
+
+.checklist-item-done {
+    text-decoration: line-through red 2px;
+}

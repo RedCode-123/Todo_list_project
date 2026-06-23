@@ -3,7 +3,7 @@ import "./style.css";
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 export let projectTasks = [];
-import {FormViewer} from './formviewer.js';
+import {FormViewer, ChecklistItem} from './formviewer.js';
 
 
 // <<CustomLogger>>
@@ -52,13 +52,6 @@ export class Task {
 
 
 // Test Data ----------------------------------------------------
-
-class ChecklistItem {
-    constructor(text,done=false) {
-        this.text = text;
-        this.done = done;
-    }
-}
 
 let item1 = new ChecklistItem("create project folder", true)
 let item2 = new ChecklistItem("create html file")
