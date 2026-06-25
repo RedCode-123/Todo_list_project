@@ -2,9 +2,9 @@
     box-sizing: border-box;
     font-size: x-small;
     --text_color: black;
-    --background_color:  #B5BAFF;
+    --background_color:  #9FA1FF;
     --primary_color: #AEE2FF;
-    --secondary_color: #9FA1FF;
+    --secondary_color: #B5BAFF;
     --accent_color: #D9F9DF;
     --line_through: red;
     --font-size-normal: 1.3rem;
@@ -51,7 +51,10 @@
 }
 .dialog-task #create-btn,
 .dialog-task #edit-btn ,
-.dialog-task #goto-edit-btn {
+.dialog-task #goto-edit-btn,
+.dialog-task #checklist-output span button,
+.dialog-task #checklist-label button
+{
     background-color: var(--primary_color);
 }
 
@@ -73,11 +76,17 @@ input,
 select,
 textarea {
    width: auto;
+   background-color: var(--secondary_color);
 }
 
 .dialog-task #checklist-output {
     display: flex;
     flex-direction: column;
+}
+
+
+.dialog-task #checklist-output span input:disabled {
+    background-color: var(--background_color);
 }
 
 .dialog-task #title-label,
@@ -95,4 +104,9 @@ textarea {
 .dialog-task #checklist-output span input
 {
     flex: 1;
+}
+
+.dialog-task .buttons {
+    display: flex;
+    justify-content:  flex-end;
 }
