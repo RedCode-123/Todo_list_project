@@ -3,11 +3,11 @@ import "./style.css";
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 export let projectTasks = [];
-import {FormViewer, ChecklistItem} from './formviewer.js';
+import {FormViewer} from './formviewer.js';
 
 
-// <<CustomLogger>>
 class CustomLogger {
+// <<CustomLogger>>
     log(obj) {
         let isItem = obj instanceof Task;
         if (isItem) {
@@ -24,8 +24,16 @@ class CustomLogger {
     }
 }
 
-// <<TaskClass>>
+export class ChecklistItem {
+    // <<ChecklistItem>>
+    constructor(text, done=false) {
+        this.text = text;
+        this.done = done;
+    }
+}
+
 export class Task {
+// <<Task>>
     constructor({
         id,
         title,
@@ -44,6 +52,7 @@ export class Task {
         this.checklist = checklist;
     }
     deleteChecklistItem(index){
+    // <<deleteChecklistItem>>
         let remove = this.checklist.splice(index, 1);
         return remove;
     }
@@ -74,6 +83,6 @@ logger.log(task1);
 let formViewer = new FormViewer;
 /////////////////////////////////////
 // formViewer.showCreateTask();
-formViewer.showEditTask(task1);
-// formViewer.showTask(task1);
+// formViewer.showEditTask(task1);
+formViewer.showTask(task1);
 // ---------------------------------------------------------------

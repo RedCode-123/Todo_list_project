@@ -1,14 +1,9 @@
-import {projectTasks, Task} from './main.js';
-// <<FormViewerClass>>
+"use strict";
+import {projectTasks, Task, ChecklistItem} from './main.js';
 
-export class ChecklistItem {
-    constructor(text, done=false) {
-        this.text = text;
-        this.done = done;
-    }
-}
 
 export class FormViewer {
+    // <<FormViewer>>
      #checklist;
      #cancelBtn = document.querySelector(".dialog-task>.task-form #cancel-btn");
      #createBtn = document.querySelector(".dialog-task >.task-form #create-btn");
@@ -26,17 +21,23 @@ export class FormViewer {
     #formTitle = document.querySelector("dialog>form>fieldset>legend");
 
     constructor() {
-          this.#id = projectTasks.length;
-           this.#title.value = "";
-           this.#description.value = "";
-            const todayDate = new Date();
-            // console.log(todayDate.toISOString().slice(0,10))
-            this.#dueDate.value = todayDate.toISOString().slice(0,10);
-           this.#priority.value = "medium";
-           this.#note.value = "";
-           this.#checklistInput.value = "";
-            this.#checklistOutput.value= "";
-            this.#checklist=[];
+        this.#id = projectTasks.length;
+        this.#title.value = "";
+        this.#description.value = "";
+        const todayDate = new Date();
+        let year = todayDate.getFullYear();
+        let month = (todayDate.getMonth()+1)<10
+                    ? `0${todayDate.getMonth()+1}`
+                    : todayDate.getMonth()+1;
+        let day = todayDate.getDate();
+        console.log(`${day}-${month}-${year}`);
+        this.#dueDate.value = `${year}-${month}-${day}`;
+        // this.#dueDate.value = todayDate.toISOString().slice(0,10);
+        this.#priority.value = "medium";
+        this.#note.value = "";
+        this.#checklistInput.value = "";
+        this.#checklistOutput.value= "";
+        this.#checklist=[];
     }
 
     #createObjectTask(){
@@ -55,14 +56,17 @@ export class FormViewer {
         // TODO Falta agregar una clase ProjectTasks que controle
         // la lista de Tasks
         projectTasks.push(newTask);
-        console.log(projectTasks);
+        // console.log(projectTasks);
         this.closeTaskModal();
 
     }
     closeTaskModal() {
+        // <<closeTaskModal>>
         this.#dialog.close();
     }
+
     showCreateTask() {
+    // <<showCreateTask>>
         this.#disableFormInputs(false);
         // Mostramos el formulario para una nueva tarea "Task"
         this.#dialog.showModal();
@@ -92,10 +96,12 @@ export class FormViewer {
             let tempHtmlList= this.#checklist.map((item, index) => {
                 let checklistItemDoneClass = item.done ? 'checklist-item-done' :'';
                 return  `
+                <span>
                 <input type="text"  class="checklist-item-${index} ${checklistItemDoneClass}" value="${item.text}" disabled/>
                 <button class="del-checklist-task-${index}" type="button">X</button>
                 <button class="edit-checklist-task-${index}" type="button">E</button>
                 <button class="mark-checklist-task-${index}" type="button">M</button>
+                </span>
                 <br>`;
             });
             // console.log(tempHtmlList);
@@ -144,7 +150,9 @@ export class FormViewer {
             let tempHtmlList= this.#checklist.map((item, index) =>{
                 let checklistItemDoneClass = item.done ? 'checklist-item-done' :'';
                 return `
+                <span>
                 <input type="text" class="checklist-item-${index} ${checklistItemDoneClass}" value="${item.text}" disabled/>
+                </span>
                 <br>`;
             });
             // console.log(tempHtmlList);
@@ -192,7 +200,7 @@ export class FormViewer {
         };
 
         projectTasks.splice(newTask.id, 1, newTask);
-        console.log(projectTasks);
+        // console.log(projectTasks);
         this.closeTaskModal();
         this.#createBtn.style.display ="inline";
         this.#editBtn.style.display ="none";
@@ -217,6 +225,7 @@ export class FormViewer {
     }
 
     showEditTask(obj){
+        // <<showEditTask>>
         this.#disableFormInputs(false);
            this.showCreateTask();
            this.#fillFormWithTaskData(obj,"Editing Task");
@@ -259,6 +268,7 @@ export class FormViewer {
     }
 
     showTask(obj) {
+        //<<showTask>>
         this.showCreateTask();
         this.#fillFormWithTaskData(obj,"Showing Task");
         this.#currentBtn("show");

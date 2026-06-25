@@ -1,27 +1,98 @@
-body {
-    /* background-color: mediumvioletred; */
+:root {
+    box-sizing: border-box;
+    font-size: x-small;
+    --text_color: black;
+    --background_color:  #B5BAFF;
+    --primary_color: #AEE2FF;
+    --secondary_color: #9FA1FF;
+    --accent_color: #D9F9DF;
+    --line_through: red;
+    --font-size-normal: 1.3rem;
+    --font-size-large: 2rem;
 }
-
 /* Estilo del formulario que pide los datos de la task  */
 /* <<formTask>> */
 .task-form > fieldset {
     display: flex;
     flex-direction: column;
     align-content: space-evenly;
-    min-height: auto;
-    min-width: auto;
+    /* min-height: auto; */
+    /* min-width: auto; */
+    width: 65ch;
 }
 
-dialog #checklist-output {
+.dialog-task {
+    font-size: var(--font-size-normal);
+    border: none;
+    background-color: var(--background_color);
+}
+
+.dialog-task::backdrop {
+    background-color: var(--background_color);
+    opacity: 80%;
+}
+
+.dialog-task legend {
+    font-size: var(--font-size-large);
+}
+
+.dialog-task #checklist-output {
     height: 90px;
     overflow: auto;
 }
 
-dialog .edit-btn {
+.dialog-task .edit-btn {
     /* Al editar en js se cambia inline  */
     display: none;
 }
 
+.dialog-task #cancel-btn {
+    background-color: var(--secondary_color);
+}
+.dialog-task #create-btn,
+.dialog-task #edit-btn ,
+.dialog-task #goto-edit-btn {
+    background-color: var(--primary_color);
+}
+
 .checklist-item-done {
-    text-decoration: line-through red 2px;
+    text-decoration: line-through var(--line_through) 2px;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+   box-sizing: border-box;
+}
+
+
+input,
+select,
+textarea {
+   width: auto;
+}
+
+.dialog-task #checklist-output {
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog-task #title-label,
+.dialog-task #description-label,
+.dialog-task #checklist-label,
+.dialog-task #checklist-output span
+ {
+    display: flex;
+}
+
+
+.dialog-task #title-label input,
+.dialog-task #description-label input,
+.dialog-task #checklist-label input,
+.dialog-task #checklist-output span input
+{
+    flex: 1;
 }

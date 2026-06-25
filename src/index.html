@@ -17,15 +17,15 @@
                 <form class="task-form" action="">
                    <fieldset>
                         <legend>Task form</legend>
-                        <label for="title">
+                        <label id="title-label" for="title">
                             Title: <input type="text" id="title" name="title" value=""/>
                         </label>
 
-                        <label for="description">
+                        <label id="description-label" for="description">
                             Description: <input type="text" min="1980-01-01" id="description" name="description" value=""/>
                         </label>
 
-                        <label for="date">Date:
+                        <label id="date-label" for="date">Date:
                             <input type="date" id="date" name="date">
                         </label>
                     <select id="priority" name="priority">
@@ -39,13 +39,13 @@
                             <textarea id="note" rows="5" cols="60"></textarea>
                         </div>
 
-                         <label for="checklist"> <!-- TODO -->
+                         <label id="checklist-label" for="checklist"> <!-- TODO -->
                             Checklist: <input type="text" id="checklist-input" name="checklist" value=""/>
                             <button id="checklist-btn" type="button">+</button>
+                        </label>
                             <div id="checklist-output">
                                 <!-- Aquí irán apareciendo la lista de tareas -->
                             </div>
-                        </label>
 
                         <div>
                             <button id="cancel-btn" type="button">Cancel</button>
