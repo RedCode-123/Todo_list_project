@@ -41,7 +41,7 @@ export class Task {
         dueDate, // FECHA de vencimiento
         priority, // high, medium, low
         note,
-        checklist // Lista
+        checklist // Lista de instancias de ChecklistItem
     }) {
         this.id = id;
         this.title = title;
@@ -62,9 +62,9 @@ export class Task {
 
 // Test Data ----------------------------------------------------
 
-let item1 = new ChecklistItem("create project folder", true)
-let item2 = new ChecklistItem("create html file")
-let item3 = new ChecklistItem("create css file", true)
+let item1 = new ChecklistItem("1 create project folder", true)
+let item2 = new ChecklistItem("2 create html file")
+let item3 = new ChecklistItem("3 create css file", true)
 
 let taskData = {
     id: "001",
@@ -83,6 +83,6 @@ logger.log(task1);
 let formViewer = new FormViewer;
 /////////////////////////////////////
 // formViewer.showCreateTask();
-formViewer.showEditTask(task1);
-// formViewer.showTask(task1);
+// formViewer.showEditTask(task1);
+formViewer.showTask(task1);
 // ---------------------------------------------------------------

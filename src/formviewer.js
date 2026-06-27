@@ -1,10 +1,14 @@
 "use strict";
 import {projectTasks, Task, ChecklistItem} from './main.js';
+import deleteImg from "./media/delete.svg";
+import editImg from "./media/edit.svg";
+import checkImg from "./media/check.svg";
 
 
 export class FormViewer {
     // <<FormViewer>>
      #checklist;
+     #closeBtn = document.querySelector(".dialog-task #close-btn-sec > #close-btn");
      #cancelBtn = document.querySelector(".dialog-task>.task-form #cancel-btn");
      #createBtn = document.querySelector(".dialog-task >.task-form #create-btn");
     #editBtn = document.querySelector(".dialog-task >.task-form #edit-btn");
@@ -86,6 +90,7 @@ export class FormViewer {
 
         this.#createBtn.addEventListener("click", this.#createObjectTask.bind(this));
         this.#cancelBtn.addEventListener("click", this.closeTaskModal.bind(this));
+        this.#closeBtn.addEventListener("click", this.closeTaskModal.bind(this));
     }
 
 
@@ -98,14 +103,32 @@ export class FormViewer {
                 return  `
                 <span>
                 <input type="text"  class="checklist-item-${index} ${checklistItemDoneClass}" value="${item.text}" disabled/>
-                <button class="del-checklist-task-${index}" type="button">X</button>
-                <button class="edit-checklist-task-${index}" type="button">E</button>
-                <button class="mark-checklist-task-${index}" type="button">M</button>
+                <button class="del-checklist-task-${index}" type="button">
+                        <img src="${deleteImg}" alt="Close button" />
+                </button>
+                <button class="edit-checklist-task-${index}" type="button">
+                        <img src="${editImg}" alt="Close button" />
+                </button>
+                <button class="mark-checklist-task-${index}" type="button">
+                        <img src="${checkImg}" alt="Close button" />
+                </button>
                 </span>
                 <br>`;
             });
-            // console.log(tempHtmlList);
+
             this.#checklistOutput.innerHTML = tempHtmlList.join("");
+            // this.#checklistOutput.innerHTML ="";
+            // this.#checklist.forEach((item, index) => {
+            //     let checklistItemDoneClass = item.done ? 'checklist-item-done' :'';
+            //     let html = `<span>
+            //         <input type="text"  class="checklist-item-${index} ${checklistItemDoneClass}" value="${item.text}" disabled/>
+            //         <button class="del-checklist-task-${index}" type="button">X</button>
+            //         <button class="edit-checklist-task-${index}" type="button">E</button>
+            //         <button class="mark-checklist-task-${index}" type="button">M</button>
+            //         </span>`;
+            //     this.#checklistOutput.insertAdjacentHTML("afterbegin", html);
+            // })
+
             let allDelChecklistTask = document.querySelectorAll("button[class^='del-checklist-task-']");
             let allEditChecklistTask = document.querySelectorAll("button[class^='edit-checklist-task-']");
             let allChecklistItem = document.querySelectorAll("input[class^='checklist-item-']");

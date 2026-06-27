@@ -1,27 +1,57 @@
 :root {
     box-sizing: border-box;
     font-size: x-small;
-    --text_color: black;
-    --background_color:  #9FA1FF;
-    --primary_color: #AEE2FF;
-    --secondary_color: #B5BAFF;
-    --accent_color: #D9F9DF;
-    --line_through: red;
+    --text_color: white;
+    --background_color:  black;
+    --primary_color: blue;
+    --secondary_color: whiteF;
+    --accent_color: green;
+    --alert_color: red;
     --font-size-normal: 1.3rem;
     --font-size-large: 2rem;
 }
 /* Estilo del formulario que pide los datos de la task  */
 /* <<formTask>> */
-.task-form > fieldset {
-    display: flex;
-    flex-direction: column;
-    align-content: space-evenly;
-    /* min-height: auto; */
-    /* min-width: auto; */
-    width: 65ch;
+
+.checklist-item-done {
+    text-decoration: line-through var(--alert_color) 2px;
 }
 
+button,
+input,
+select,
+textarea {
+    color: var(--text_color);
+  font-family: inherit;
+  font-size: 100%;
+   box-sizing: border-box;
+}
+
+
+.dialog-task input,
+.dialog-taskselect,
+.dialog-task textarea {
+   background-color: var(--secondary_color);
+}
+
+.dialog-task select {
+    background-color:  var(--background_color);
+}
+
+
+.dialog-task #checklist-output span input {
+    background-color: var(--background_color);
+}
+
+input:hover:disabled,
+select:hover:disabled,
+textarea:hover:disabled,
+.dialog-task #checklist-output span input:hover:disabled
+{
+    background-color: var(--alert_color);
+}
 .dialog-task {
+    color: var(--text_color);
     font-size: var(--font-size-normal);
     border: none;
     background-color: var(--background_color);
@@ -36,6 +66,16 @@
     font-size: var(--font-size-large);
 }
 
+.dialog-task .task-form > fieldset {
+    display: flex;
+    flex-direction: column;
+    align-content: space-evenly;
+    /* min-height: auto; */
+    /* min-width: auto; */
+    width: 65ch;
+    border: none;
+}
+
 .dialog-task #checklist-output {
     height: 90px;
     overflow: auto;
@@ -46,7 +86,9 @@
     display: none;
 }
 
-.dialog-task #cancel-btn {
+.dialog-task #cancel-btn,
+.dialog-task #close-btn-sec > #close-btn
+{
     background-color: var(--secondary_color);
 }
 .dialog-task #create-btn,
@@ -58,55 +100,52 @@
     background-color: var(--primary_color);
 }
 
-.checklist-item-done {
-    text-decoration: line-through var(--line_through) 2px;
-}
 
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-  font-size: 100%;
-   box-sizing: border-box;
+
+.dialog-task input:focus,
+.dialog-task textarea:focus {
+    border: 2px solid var(--accent_color);
 }
 
 
-input,
-select,
-textarea {
-   width: auto;
-   background-color: var(--secondary_color);
-}
 
 .dialog-task #checklist-output {
     display: flex;
     flex-direction: column;
 }
 
-
-.dialog-task #checklist-output span input:disabled {
-    background-color: var(--background_color);
-}
-
 .dialog-task #title-label,
 .dialog-task #description-label,
 .dialog-task #checklist-label,
-.dialog-task #checklist-output span
+.dialog-task #checklist-output span,
+.dialog-task #priority-section
  {
     display: flex;
 }
 
 
-.dialog-task #title-label input,
-.dialog-task #description-label input,
-.dialog-task #checklist-label input,
-.dialog-task #checklist-output span input
+.dialog-task #title-label>input,
+.dialog-task #description-label>input,
+.dialog-task #checklist-label>input,
+.dialog-task #checklist-output>span>input,
+.dialog-task #priority-section>select
 {
     flex: 1;
 }
 
-.dialog-task .buttons {
+
+.dialog-task #priority-section > select {
+    height: fit-content;
+}
+
+.dialog-task .buttons,
+.dialog-task > #close-btn-sec
+{
     display: flex;
     justify-content:  flex-end;
 }
+.dialog-task #priority-section {
+    align-items: center;
+}
+
+

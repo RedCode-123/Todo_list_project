@@ -14,6 +14,11 @@
     <body>
         <main>
             <dialog class="dialog-task">
+                <div id="close-btn-sec">
+                    <button id="close-btn" type="button">
+                        <img src="./media/close.svg" alt="Close button" />
+                    </button>
+                </div>
                 <form class="task-form" action="">
                    <fieldset>
                         <legend>Task form</legend>
@@ -28,11 +33,14 @@
                         <label id="date-label" for="date">Date:
                             <input type="date" id="date" name="date">
                         </label>
-                    <select id="priority" name="priority">
-                            <option value="high">High</option>
-                            <option value="medium" selected>Medium</option>
-                            <option value="low">Low</option>
-                        </select>
+                        <div id="priority-section">
+                            <p>Priority: </p>
+                            <select id="priority" name="priority">
+                                    <option value="high">High</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="low">Low</option>
+                                </select>
+                        </div>
 
                         <div>
                             <p>Note:</p>
